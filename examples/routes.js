@@ -1,5 +1,5 @@
 import navConfig from './nav.config'
-// import langs from './i18n/route'
+import langs from './i18n/route'
 
 const LOAD_MAP = {
   'zh-CN': name => {
@@ -77,62 +77,62 @@ const registerRoute = (navConfig) => {
 let route = registerRoute(navConfig)
 
 // 注册主题等
-// const generateMiscRoutes = function (lang) {
-//   let guideRoute = {
-//     path: `/${lang}/guide`, // 指南
-//     redirect: `/${lang}/guide/design`,
-//     component: load(lang, 'guide'),
-//     children: [{
-//       path: 'design', // 设计原则
-//       name: 'guide-design' + lang,
-//       meta: { lang },
-//       component: load(lang, 'design')
-//     }, {
-//       path: 'nav', // 导航
-//       name: 'guide-nav' + lang,
-//       meta: { lang },
-//       component: load(lang, 'nav')
-//     }]
-//   }
+const generateMiscRoutes = function (lang) {
+  let guideRoute = {
+    path: `/${lang}/guide`, // 指南
+    redirect: `/${lang}/guide/design`,
+    component: load(lang, 'guide'),
+    children: [{
+      path: 'design', // 设计原则
+      name: 'guide-design' + lang,
+      meta: { lang },
+      component: load(lang, 'design')
+    }, {
+      path: 'nav', // 导航
+      name: 'guide-nav' + lang,
+      meta: { lang },
+      component: load(lang, 'nav')
+    }]
+  }
 
-//   let themeRoute = {
-//     path: `/${lang}/theme`,
-//     component: load(lang, 'theme-nav'),
-//     children: [
-//       {
-//         path: '/', // 主题管理
-//         name: 'theme' + lang,
-//         meta: { lang },
-//         component: load(lang, 'theme')
-//       },
-//       {
-//         path: 'preview', // 主题预览编辑
-//         name: 'theme-preview-' + lang,
-//         meta: { lang },
-//         component: load(lang, 'theme-preview')
-//       }]
-//   }
+  let themeRoute = {
+    path: `/${lang}/theme`,
+    component: load(lang, 'theme-nav'),
+    children: [
+      {
+        path: '/', // 主题管理
+        name: 'theme' + lang,
+        meta: { lang },
+        component: load(lang, 'theme')
+      },
+      {
+        path: 'preview', // 主题预览编辑
+        name: 'theme-preview-' + lang,
+        meta: { lang },
+        component: load(lang, 'theme-preview')
+      }]
+  }
 
-//   let resourceRoute = {
-//     path: `/${lang}/resource`, // 资源
-//     meta: { lang },
-//     name: 'resource' + lang,
-//     component: load(lang, 'resource')
-//   }
+  let resourceRoute = {
+    path: `/${lang}/resource`, // 资源
+    meta: { lang },
+    name: 'resource' + lang,
+    component: load(lang, 'resource')
+  }
 
-//   let indexRoute = {
-//     path: `/${lang}`, // 首页
-//     meta: { lang },
-//     name: 'home' + lang,
-//     component: load(lang, 'index')
-//   }
+  let indexRoute = {
+    path: `/${lang}`, // 首页
+    meta: { lang },
+    name: 'home' + lang,
+    component: load(lang, 'index')
+  }
 
-//   return [guideRoute, resourceRoute, themeRoute, indexRoute]
-// }
+  return [guideRoute, resourceRoute, themeRoute, indexRoute]
+}
 
-// langs.forEach(lang => {
-//   route = route.concat(generateMiscRoutes(lang.lang))
-// })
+langs.forEach(lang => {
+  route = route.concat(generateMiscRoutes(lang.lang))
+})
 
 // route.push({
 //   path: '/play',
@@ -150,12 +150,13 @@ if (userLanguage.indexOf('en-') !== -1) {
   defaultPath = '/fr-FR'
 }
 
+let defaultxx = `${defaultPath}/component/alert`
 route = route.concat([{
   path: '/',
-  redirect: defaultPath
+  redirect: defaultxx
 }, {
   path: '*',
-  redirect: defaultPath
+  redirect: defaultxx
 }])
-console.log(route, 2333)
+
 export default route

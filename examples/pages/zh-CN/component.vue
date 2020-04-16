@@ -1,16 +1,8 @@
-<style>
-.page-component__scroll {
-  height: calc(100% - 80px);
-  margin-top: 80px;
-
-  > .el-scrollbar__wrap {
-    overflow-x: auto;
-  }
-}
-
+<style lang="scss">
 .page-component {
   box-sizing: border-box;
   height: 100%;
+  display: flex;
 
   &.page-container {
     padding: 0;
@@ -46,6 +38,7 @@
   }
 
   .page-component__content {
+    width: 100%;
     padding-left: 270px;
     padding-bottom: 100px;
     box-sizing: border-box;
@@ -132,8 +125,30 @@
 }
 </style>
 <template>
-  <div class>
-    <router-view class="content"></router-view>
+  <div class="page-container page-component">
+    <div class="page-component__nav">
+      <!-- <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"></side-nav> -->
+      <div v-for="li in navsData[lang]" :key="li.name">
+        <router-link :to="`/${ lang }/component${li.path}`" v-if="li.path">{{li.name}}</router-link>
+        <div v-else>
+          <div>{{li.name}}</div>
+          <div v-for="group in li.groups" :key="group.groupName">
+            <div v-for="l in group.list" :key="l.title">
+              <router-link :to="`/${ lang }/component${li.path}`">{{l.title}}</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-component__content">
+      <router-view class="content"></router-view>
+    </div>
+    <button
+      v-if="showBackToTop"
+      target=".page-component__scroll .el-scrollbar__wrap"
+      :right="100"
+      :bottom="150"
+    ></button>
   </div>
 </template>
 <script>
@@ -150,7 +165,8 @@ export default {
       scrollTop: 0,
       showHeader: true,
       componentScrollBar: null,
-      componentScrollBoxDlsugar: null
+      componentScrollBoxDlsugar: null,
+      showBackToTop: false
     }
   },
   watch: {
@@ -160,6 +176,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.navsData)
     document.body.classList.add('is-component')
   },
   destroyed () {

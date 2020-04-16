@@ -200,13 +200,24 @@
       padding-right: 25px;
     }
   }
+
+  .header-anchor {
+    float: left;
+    margin-left: -20px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  a {
+    color: #409eff;
+    text-decoration: none;
+  }
 }
 </style>
 
 <script type="text/babel">
-import compoLang from '../i18n/component.json';
-import Dlsugar from 'main/index.js';
-import { stripScript, stripStyle, stripTemplate } from '../util';
+import compoLang from '../i18n/component.json'
+import Dlsugar from 'main/index.js'
+import { stripScript, stripStyle, stripTemplate } from '../util'
 const { version } = Dlsugar
 
 export default {
@@ -234,7 +245,7 @@ export default {
         'ipt>' +
         '\n<scr' +
         `ipt src="//unpkg.com/element-ui@${version}/lib/index.js"></scr` +
-        'ipt>';
+        'ipt>'
       let jsTpl = (script || '').replace(/export default/, 'var Main =').trim()
       let htmlTpl = `${resourcesTpl}\n<div id="app">\n${html.trim()}\n</div>`
       let cssTpl = `@import url("//unpkg.com/element-ui@${version}/lib/theme-chalk/index.css");\n${(
@@ -254,10 +265,10 @@ export default {
       while (form.firstChild) {
         form.removeChild(form.firstChild)
       }
-      form.method = 'POST';
-      form.action = 'https://codepen.io/pen/define/';
-      form.target = '_blank';
-      form.style.display = 'none';
+      form.method = 'POST'
+      form.action = 'https://codepen.io/pen/define/'
+      form.target = '_blank'
+      form.style.display = 'none'
 
       const input = document.createElement('input')
       input.setAttribute('name', 'data')
@@ -275,7 +286,7 @@ export default {
       this.fixedControl =
         bottom > document.documentElement.clientHeight &&
         top + 44 <= document.documentElement.clientHeight
-      this.$refs.control.style.left = this.fixedControl ? `${left}px` : '0';
+      this.$refs.control.style.left = this.fixedControl ? `${left}px` : '0'
     },
 
     removeScrollHandler () {
@@ -302,7 +313,7 @@ export default {
     },
 
     iconClass () {
-      return this.isExpanded ? 'el-icon-caret-top' : 'el-icon-caret-bottom';
+      return this.isExpanded ? 'el-icon-caret-top' : 'el-icon-caret-bottom'
     },
 
     controlText () {
@@ -329,12 +340,12 @@ export default {
 
   watch: {
     isExpanded (val) {
-      this.codeArea.style.height = val ? `${this.codeAreaHeight + 1}px` : '0';
+      this.codeArea.style.height = val ? `${this.codeAreaHeight + 1}px` : '0'
       if (!val) {
         this.fixedControl = false
-        this.$refs.control.style.left = '0';
+        this.$refs.control.style.left = '0'
         this.removeScrollHandler()
-        return;
+        return
       }
       setTimeout(() => {
         this.scrollParent = document.querySelector(
@@ -350,7 +361,7 @@ export default {
   created () {
     const highlight = this.$slots.highlight
     if (highlight && highlight[0]) {
-      let code = '';
+      let code = ''
       let cur = highlight[0]
       if (cur.tag === 'pre' && cur.children && cur.children[0]) {
         cur = cur.children[0]
@@ -370,8 +381,8 @@ export default {
     this.$nextTick(() => {
       let highlight = this.$el.getElementsByClassName('highlight')[0]
       if (this.$el.getElementsByClassName('description').length === 0) {
-        highlight.style.width = '100%';
-        highlight.borderRight = 'none';
+        highlight.style.width = '100%'
+        highlight.borderRight = 'none'
       }
     })
   },
