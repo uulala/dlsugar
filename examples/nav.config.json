@@ -13,6 +13,10 @@
             {
               "path": "/alert",
               "title": "Alert 警告"
+            },
+            {
+              "path": "/echarts",
+              "title": "Echarts 图表"
             }
           ]
         }

@@ -45,7 +45,7 @@
   }
 
   .content {
-    padding-top: 50px;
+    padding: 50px 0;
 
     > {
       h3 {
@@ -97,6 +97,14 @@
       }
     }
   }
+  a {
+    &.default {
+      color: #333;
+    }
+    &.active {
+      color: #409eff;
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -127,14 +135,23 @@
 <template>
   <div class="page-container page-component">
     <div class="page-component__nav">
-      <!-- <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"></side-nav> -->
       <div v-for="li in navsData[lang]" :key="li.name">
-        <router-link :to="`/${ lang }/component${li.path}`" v-if="li.path">{{li.name}}</router-link>
+        <router-link
+          :to="`/${ lang }/component${li.path}`"
+          v-if="li.path"
+          :class="active ==li.path ? 'active' : 'default'"
+          @click="()=> changeActive(li.path)"
+        >{{li.name}}</router-link>
         <div v-else>
           <div>{{li.name}}</div>
           <div v-for="group in li.groups" :key="group.groupName">
+            <div>{{group.groupName}}</div>
             <div v-for="l in group.list" :key="l.title">
-              <router-link :to="`/${ lang }/component${li.path}`">{{l.title}}</router-link>
+              <router-link
+                :to="`/${ lang }/component${l.path}`"
+                :class="active ==l.path ? 'active' : 'default'"
+                @click="()=> changeActive(l.path)"
+              >{{l.title}}</router-link>
             </div>
           </div>
         </div>
@@ -158,7 +175,6 @@ import navsData from '../../nav.config.json'
 
 export default {
   data () {
-    console.log(this.$route.meta)
     return {
       lang: this.$route.meta.lang,
       navsData,
@@ -166,7 +182,8 @@ export default {
       showHeader: true,
       componentScrollBar: null,
       componentScrollBoxDlsugar: null,
-      showBackToTop: false
+      showBackToTop: false,
+      active: ''
     }
   },
   watch: {
@@ -176,11 +193,16 @@ export default {
     }
   },
   mounted () {
-    console.log(this.navsData)
+    console.log(this.navsData[this.lang])
     document.body.classList.add('is-component')
   },
   destroyed () {
     document.body.classList.remove('is-component')
+  },
+  methods: {
+    changeActive (path) {
+      this.active = path
+    }
   }
 }
 </script>

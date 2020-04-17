@@ -2,7 +2,38 @@
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
+var path = require('path');
+var fs = require('fs');
+var nodeExternals = require('webpack-node-externals');
+var Components = require('../components.json');
+
+// var utilsList = fs.readdirSync(path.resolve(__dirname, '../src/utils'));
+// var mixinsList = fs.readdirSync(path.resolve(__dirname, '../src/mixins'));
+// var transitionList = fs.readdirSync(path.resolve(__dirname, '../src/transitions'));
+var externals = {};
+
+Object.keys(Components).forEach(function(key) {
+  externals[`dlsugar-ui/packages/${key}`] = `dlsugar-ui/lib/${key}`;
+});
+
+externals['dlsugar-ui/src/locale'] = 'dlsugar-ui/lib/locale';
+// utilsList.forEach(function(file) {
+//   file = path.basename(file, '.js');
+//   externals[`dlsugar-ui/src/utils/${file}`] = `dlsugar-ui/lib/utils/${file}`;
+// });
+// mixinsList.forEach(function(file) {
+//   file = path.basename(file, '.js');
+//   externals[`dlsugar-ui/src/mixins/${file}`] = `dlsugar-ui/lib/mixins/${file}`;
+// });
+// transitionList.forEach(function(file) {
+//   file = path.basename(file, '.js');
+//   externals[`dlsugar-ui/src/transitions/${file}`] = `dlsugar-ui/lib/transitions/${file}`;
+// });
+
+externals = [Object.assign({
+  vue: 'vue'
+}, externals), nodeExternals()];
+
 
 module.exports = {
   dev: {
@@ -72,5 +103,19 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
-  }
+  },
+  externals,
+  alias:{
+    main: path.resolve(__dirname, '../src'),
+    packages: path.resolve(__dirname, '../packages'),
+    examples: path.resolve(__dirname, '../examples'),
+    'dlsugar-ui': path.resolve(__dirname, '../')
+  },
+  vue:{
+    root: 'Vue',
+    commonjs: 'vue',
+    commonjs2: 'vue',
+    amd: 'vue'
+  },
+  jsexclude: /node_modules|utils\/popper\.js|utils\/date\.js/,
 }

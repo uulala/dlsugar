@@ -1,0 +1,9 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(echarts) {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin: 5px 0;
+}
