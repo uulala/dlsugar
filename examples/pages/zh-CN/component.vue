@@ -15,26 +15,8 @@
     bottom: 0;
     margin-top: 80px;
     transition: padding-top 0.3s;
+    padding-left: 50px;
 
-    > .el-scrollbar__wrap {
-      height: 100%;
-      overflow-x: auto;
-    }
-
-    &.is-extended {
-      padding-top: 0;
-    }
-  }
-
-  .side-nav {
-    height: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-right: 0;
-
-    & > ul {
-      padding-bottom: 50px;
-    }
   }
 
   .page-component__content {
@@ -51,58 +33,6 @@
       h3 {
         margin: 55px 0 20px;
       }
-
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        background-color: #fff;
-        font-size: 14px;
-        margin-bottom: 45px;
-        line-height: 1.5em;
-
-        strong {
-          font-weight: normal;
-        }
-
-        td,
-        th {
-          border-bottom: 1px solid #dcdfe6;
-          padding: 15px;
-          max-width: 250px;
-        }
-
-        th {
-          text-align: left;
-          white-space: nowrap;
-          color: #909399;
-          font-weight: normal;
-        }
-
-        td {
-          color: #606266;
-        }
-
-        th:first-child,
-        td:first-child {
-          padding-left: 10px;
-        }
-      }
-
-      ul:not(.timeline) {
-        margin: 10px 0;
-        padding: 0 0 0 20px;
-        font-size: 14px;
-        color: #5e6d82;
-        line-height: 2em;
-      }
-    }
-  }
-  a {
-    &.default {
-      color: #333;
-    }
-    &.active {
-      color: #409eff;
     }
   }
 }
@@ -135,27 +65,12 @@
 <template>
   <div class="page-container page-component">
     <div class="page-component__nav">
-      <div v-for="li in navsData[lang]" :key="li.name">
-        <router-link
-          :to="`/${ lang }/component${li.path}`"
-          v-if="li.path"
-          :class="active ==li.path ? 'active' : 'default'"
-          @click="()=> changeActive(li.path)"
-        >{{li.name}}</router-link>
-        <div v-else>
-          <div>{{li.name}}</div>
-          <div v-for="group in li.groups" :key="group.groupName">
-            <div>{{group.groupName}}</div>
-            <div v-for="l in group.list" :key="l.title">
-              <router-link
-                :to="`/${ lang }/component${l.path}`"
-                :class="active ==l.path ? 'active' : 'default'"
-                @click="()=> changeActive(l.path)"
-              >{{l.title}}</router-link>
-            </div>
-          </div>
-        </div>
-      </div>
+      <dl-menu
+        :menuData="navsData[lang]"
+        :basicPath="`/${lang}/component`"
+        @menuChange="menuChange"
+        :floorCount="2"
+      ></dl-menu>
     </div>
     <div class="page-component__content">
       <router-view class="content"></router-view>
@@ -193,15 +108,14 @@ export default {
     }
   },
   mounted () {
-    console.log(this.navsData[this.lang])
     document.body.classList.add('is-component')
   },
   destroyed () {
     document.body.classList.remove('is-component')
   },
   methods: {
-    changeActive (path) {
-      this.active = path
+    menuChange (path) {
+      this.$router.push({path})
     }
   }
 }

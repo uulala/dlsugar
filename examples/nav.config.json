@@ -6,17 +6,26 @@
     },
     {
       "name": "组件",
-      "groups": [
+      "children": [
         {
-          "groupName": "Notice",
-          "list": [
+          "name": "Notice",
+          "children": [
             {
               "path": "/alert",
-              "title": "Alert 警告"
+              "name": "Alert 警告"
             },
             {
               "path": "/echarts",
-              "title": "Echarts 图表"
+              "name": "Echarts 图表"
+            }
+          ]
+        },
+        {
+          "name": "Navigation",
+          "children": [
+            {
+              "path": "/menu",
+              "name": "Menu 菜单"
             }
           ]
         }

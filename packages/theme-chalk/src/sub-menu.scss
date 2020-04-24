@@ -1,0 +1,15 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(sub-menu) {
+  text-align: left;
+  li {
+    cursor: pointer;
+    @include b(menu-item) {
+      color: $--color-text-primary;
+      padding: 10px 0;
+      display: inline-block;
+      &.active{color: $--color-primary;}
+    }
+  }
+}

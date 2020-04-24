@@ -38,15 +38,15 @@ const registerRoute = (navConfig) => {
     })
     navs.forEach(nav => {
       if (nav.href) return
-      if (nav.groups) {
-        nav.groups.forEach(group => {
-          group.list.forEach(nav => {
-            addRoute(nav, lang, index)
-          })
-        })
-      } else if (nav.children) {
-        nav.children.forEach(nav => {
-          addRoute(nav, lang, index)
+      if (nav.children) {
+        nav.children.forEach(group => {
+          if (group.children) {
+            group.children.forEach(nav => {
+              addRoute(nav, lang, index)
+            })
+          } else {
+            addRoute(group, lang, index)
+          }
         })
       } else {
         addRoute(nav, lang, index)

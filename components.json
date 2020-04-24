@@ -1,3 +1,5 @@
 {
-  "echarts": "./packages/echarts/index.js"
+  "alert": "./packages/alert/index.js",
+  "echarts": "./packages/echarts/index.js",
+  "menu": "./packages/menu/index.js"
 }

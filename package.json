@@ -1,9 +1,8 @@
 {
   "name": "dlsugar",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A Vue.js project",
   "author": "unamelcs",
-  "private": true,
   "main": "lib/dlsugar-ui.common.js",
   "files": [
     "lib",
@@ -13,18 +12,19 @@
   ],
   "typings": "types/index.d.ts",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "npm run build:file && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js",
-    "build:cpt": "webpack --config build/webpack.component.conf.js",
+    "build:prod": "node build/build.js",
+    "build:lib": "npm run build:file && webpack --config build/webpack.component.conf.js && webpack --config build/webpack.lib.conf.js ",
     "build:file": "node build/bin/build-entry.js"
   },
   "peerDependencies": {
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "echarts": "^4.7.0"
   },
   "dependencies": {
     "throttle-debounce": "^1.0.1",

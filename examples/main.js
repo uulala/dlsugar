@@ -30,7 +30,6 @@ const router = new VueRouter({
 })
 
 Vue.config.productionTip = false
-console.log(router)
 router.afterEach(route => {
   // https://github.com/highlightjs/highlight.js/issues/909#issuecomment-131686186
   Vue.nextTick(() => {
@@ -45,7 +44,6 @@ router.afterEach(route => {
   //   }
   // }
   document.title = 'Dlsugar'
-  console.log('route', route)
   ga('send', 'event', 'PageView', route, route.name)
 })
 
