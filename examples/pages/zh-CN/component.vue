@@ -69,7 +69,6 @@
         :menuData="navsData[lang]"
         :basicPath="`/${lang}/component`"
         @menuChange="menuChange"
-        :floorCount="2"
       ></dl-menu>
     </div>
     <div class="page-component__content">

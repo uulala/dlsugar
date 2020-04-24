@@ -8,7 +8,7 @@
     @include b(menu-item) {
       color: $--color-text-primary;
       padding: 10px 0;
-      display: inline-block;
+      display: block;
       &.active{color: $--color-primary;}
     }
   }
