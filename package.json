@@ -1,6 +1,6 @@
 {
   "name": "dlsugar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Vue.js project",
   "author": "unamelcs",
   "main": "lib/dlsugar-ui.common.js",
