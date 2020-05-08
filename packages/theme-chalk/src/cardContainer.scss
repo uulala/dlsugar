@@ -1,0 +1,56 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(cardContainer) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: $--color-white;
+  padding: 10px 20px;
+  .card,
+  .empty-card {
+    width: 20%;
+    padding: 5px 0px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: $--color-white;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  .card {
+    cursor: pointer;
+    border-color: $--border-color-base;
+    &:hover {
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+  .card-2 {
+    width: calc(50% - 10px);
+  }
+  .card-3 {
+    width: calc(33% - 10px);
+  }
+   .card-4 {
+    width: calc(25% - 10px);
+  }
+  .card-5 {
+    width: calc(20% - 10px);
+  }
+  .card-6 {
+    width: calc(16% - 10px);
+  }
+  .card-7 {
+    width: calc(14% - 10px)
+  }
+  .card-8 {
+    width: calc(12% - 10px)
+  }
+  .card-9 {
+    width: calc(11% - 10px)
+  }
+  .card-10 {
+    width: calc(10% - 10px)
+  }
+}

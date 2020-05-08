@@ -142,7 +142,7 @@ Object.keys(navConfigFile).forEach(lang => {
   let groups = navConfigFile[lang][1].children;
   groups[groups.length - 1].children.push({
     path: `/${componentname}`,
-    title: lang === 'zh-CN' && componentname !== chineseName
+    name: lang === 'zh-CN' && componentname !== chineseName
       ? `${ComponentName} ${chineseName}`
       : ComponentName
   });

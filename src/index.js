@@ -3,6 +3,7 @@
 import Alert from '../packages/alert/index.js';
 import Echarts from '../packages/echarts/index.js';
 import Menu from '../packages/menu/index.js';
+import CardContainer from '../packages/cardContainer/index.js';
 // import locale from 'dlsugar-ui/src/locale';
 // import CollapseTransition from 'dlsugar-ui/src/transitions/collapse-transition';
 
@@ -10,6 +11,7 @@ const components = [
   Alert,
   Echarts,
   Menu,
+  CardContainer,
   // CollapseTransition
 ];
 
@@ -53,5 +55,6 @@ export default {
   // Loading,
   Alert,
   Echarts,
-  Menu
+  Menu,
+  CardContainer
 };

@@ -28,6 +28,15 @@
               "name": "Menu 菜单"
             }
           ]
+        },
+        {
+          "name": "Basic",
+          "children": [
+            {
+              "path": "/cardContainer",
+              "name": "CardContainer 卡片包裹器"
+            }
+          ]
         }
       ]
     }
