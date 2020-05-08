@@ -1,6 +1,6 @@
 {
   "name": "dlsugar",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A Vue.js project",
   "author": "unamelcs",
   "main": "lib/dlsugar-ui.common.js",
@@ -12,16 +12,19 @@
   ],
   "typings": "types/index.d.ts",
   "scripts": {
+    "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
+    "build:prod": "node build/build.js",
+    "build:file": "node build/bin/build-entry.js",
+    "build:theme": "gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
+    "build:dist": "npm run clean && npm run build:file && npm run build:theme && webpack --config build/webpack.component.conf.js && webpack --config build/webpack.entrylib.conf.js ",
     "dev": "npm run build:file && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build:prod": "node build/build.js",
-    "build:lib": "npm run build:file && webpack --config build/webpack.component.conf.js && webpack --config build/webpack.lib.conf.js ",
-    "build:file": "node build/bin/build-entry.js"
+    "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs"
   },
+  "license": "MIT",
   "peerDependencies": {
     "vue": "^2.5.2"
   },
@@ -48,6 +51,7 @@
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
     "copy-webpack-plugin": "^4.0.1",
+    "cp-cli": "^1.0.2",
     "cross-env": "^5.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.11",
@@ -64,6 +68,9 @@
     "file-loader": "^1.1.4",
     "file-save": "^0.2.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-sass": "^4.1.0",
     "highlight.js": "^9.18.1",
     "html-webpack-plugin": "^2.30.1",
     "inject-loader": "^3.0.0",
@@ -93,7 +100,7 @@
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
     "progress-bar-webpack-plugin": "^2.1.0",
-    "rimraf": "^2.6.0",
+    "rimraf": "^2.5.4",
     "sass-loader": "^7.3.1",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",

@@ -1,3 +1,4 @@
+// build src/index.js
 var Components = require('../../components.json');
 var fs = require('fs');
 var render = require('json-templater/string');
