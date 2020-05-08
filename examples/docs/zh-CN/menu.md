@@ -27,18 +27,10 @@
                                         "name": "Alert 警告"
                                     },
                                     {
-                                        "path": "/zh-CN/component/echarts",
-                                        "name": "Echarts 图表"
-                                    },
-                                    {
                                         "name": "233",
                                         "children": [{
                                                 "path": "/zh-CN/component/alert",
                                                 "name": "Alert 警告"
-                                            },
-                                            {
-                                                "path": "/zh-CN/component/echarts",
-                                                "name": "Echarts 图表"
                                             }
                                         ]
                                     }
