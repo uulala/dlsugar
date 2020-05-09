@@ -1,5 +1,5 @@
 <template>
-  <div class="dl-cardContainer">
+  <div class="dl-card-container">
     <div class="card" v-for="li in list" :key="li[keyName]" :class="`card-${realCol}`">
       <slot name="card" :cardData="li" />
     </div>
